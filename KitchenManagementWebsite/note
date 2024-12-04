@@ -1,0 +1,28 @@
+CREATE DATABASE kitchen_management;
+
+USE kitchen_management;
+
+-- Table for Admins
+CREATE TABLE admins (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+
+-- Table for Staff Logins
+CREATE TABLE staff_logins (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    time TIME NOT NULL,
+    date DATE NOT NULL
+);
+
+-- Table for Grocery List
+CREATE TABLE grocery_list (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    item VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL,
+    status VARCHAR(255) NOT NULL
+);
