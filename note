@@ -1,0 +1,117 @@
+CREATE DATABASE kitchen_management;
+
+USE kitchen_management;
+
+-- Table for Admins
+CREATE TABLE admins (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+
+-- Table for Staff Logins
+CREATE TABLE staff_logins (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    time TIME NOT NULL,
+    date DATE NOT NULL
+);
+
+-- Table for Grocery List
+CREATE TABLE grocery_list (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    item VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL,
+    status VARCHAR(255) NOT NULL
+);
+
+
+
+
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitchen Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Role Selection Page -->
+    <div class="flex items-center justify-center h-screen bg-gray-100" id="role-selection">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md text-center">
+            <img src="https://storage.googleapis.com/a1aa/image/68fKUhyFt52BKiU2fXB4c7eODHQaKBK1iEQn6QfqonJJu8yPB.jpg" alt="Company Logo" class="w-24 h-24 mx-auto mb-6" width="100" height="100">
+            <h2 class="text-2xl font-bold mb-6">Select Your Role</h2>
+            <div class="flex flex-col space-y-4">
+                <button class="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition duration-300" onclick="showLogin('admin')">Admin Login</button>
+                <button class="w-full bg-green-500 text-white p-2 rounded-lg hover:bg-green-600 transition duration-300" onclick="showLogin('staff')">Staff Login</button>
+            </div>
+        </div>
+    </div>
+    <!-- Admin Login Page -->
+    <div class="hidden flex items-center justify-center h-screen bg-gray-100" id="admin-login">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+            <img src="https://storage.googleapis.com/a1aa/image/68fKUhyFt52BKiU2fXB4c7eODHQaKBK1iEQn6QfqonJJu8yPB.jpg" alt="Company Logo" class="w-24 h-24 mx-auto mb-6" width="100" height="100">
+            <h2 class="text-2xl font-bold mb-6 text-center">Admin Login</h2>
+            <form onsubmit="login(event, 'admin')">
+                <div class="mb-4">
+                    <label for="admin-username" class="block text-gray-700 mb-2">Username</label>
+                    <input type="text" id="admin-username" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter your username">
+                </div>
+                <div class="mb-6">
+                    <label for="admin-password" class="block text-gray-700 mb-2">Password</label>
+                    <input type="password" id="admin-password" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter your password">
+                </div>
+                <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition duration-300">Login</button>
+            </form>
+        </div>
+    </div>
+    <!-- Staff Login Page -->
+    <div class="hidden flex items-center justify-center h-screen bg-gray-100" id="staff-login">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+            <img src="https://storage.googleapis.com/a1aa/image/68fKUhyFt52BKiU2fXB4c7eODHQaKBK1iEQn6QfqonJJu8yPB.jpg" alt="Company Logo" class="w-24 h-24 mx-auto mb-6" width="100" height="100">
+            <h2 class="text-2xl font-bold mb-6 text-center">Staff Login</h2>
+            <form onsubmit="login(event, 'staff')">
+                <div class="mb-4">
+                    <label for="staff-username" class="block text-gray-700 mb-2">Username</label>
+                    <input type="text" id="staff-username" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter your username">
+                </div>
+                <div class="mb-6">
+                    <label for="staff-password" class="block text-gray-700 mb-2">Password</label>
+                    <input type="password" id="staff-password" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter your password">
+                </div>
+                <button type="submit" class="w-full bg-green-500 text-white p-2 rounded-lg hover:bg-green-600 transition duration-300">Login</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function showLogin(role) {
+            document.getElementById('role-selection').classList.add('hidden');
+            if (role === 'admin') {
+                document.getElementById('admin-login').classList.remove('hidden');
+            } else {
+                document.getElementById('staff-login').classList.remove('hidden');
+            }
+        }
+
+        function login(event, role) {
+            event.preventDefault();
+            if (role === 'admin') {
+                window.location.href = 'dashboard.html';
+            } else {
+                window.location.href = 'dashboard.html';
+            }
+        }
+    </script>
+</body>
+</html>
